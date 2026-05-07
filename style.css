@@ -1,0 +1,626 @@
+        /* --- 1. CONFIG & PALETTE --- */
+        :root {
+            /* Progressive Background Palette */
+            --bg-1: #F2EFE9;
+            /* Lightest */
+            --bg-2: #EDEAE3;
+            --bg-3: #E8E5DF;
+            --bg-4: #E3E0DA;
+            --bg-5: #DEDBD5;
+            /* Darkest */
+
+            /* Footer Gradient Steps (Custom) */
+            --footer-1: #D9D6D0;
+            --footer-2: #D4D1CB;
+            --footer-3: #CFCCC6;
+
+            /* Text & Accents (Restored) */
+            --bg-cream: #F2EFE9;
+            /* Fallback */
+            --text-charcoal: #333333;
+            --text-light: #595959;
+            --accent-coral: #E69A8D;
+
+            /* Spacing */
+            --side-padding: clamp(20px, 5vw, 80px);
+            --vertical-padding: clamp(40px, 6vw, 120px);
+        }
+
+        /* --- 2. GLOBAL RESET & TEXTURE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            background: none !important;
+            /* Ensure no background color if broken */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-width: 300px;
+        }
+
+        /* Film Grain / Wall Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Creating a noise texture using CSS gradients */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+        }
+
+        /* --- 3. SHARED LAYOUT --- */
+        section {
+            width: 100%;
+            min-height: 80vh;
+            /* At least 80% viewport height */
+            position: relative;
+            padding: var(--vertical-padding) var(--side-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* Center content vertically */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            height: 100%;
+            align-items: center;
+        }
+
+        /* Typography Enhancements */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            font-style: italic;
+        }
+
+        /* Unified Section Title */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 64px);
+            margin-bottom: 0;
+            line-height: 1.1;
+            font-style: italic;
+        }
+
+        p {
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        /* --- 4. HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(var(--vertical-padding) * 0.35) calc(var(--side-padding) * 0.5);
+            z-index: 100;
+            mix-blend-mode: difference;
+            opacity: 0.8;
+            /* Blends nicely with the cream bg */
+        }
+
+
+
+        .contact-link {
+            text-decoration: none;
+            color: var(--text-charcoal);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-coral);
+        }
+
+        /* --- 5. HERO SECTION --- */
+        .hero-section {
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            gap: 20px;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            filter: brightness(0.5) contrast(0.95);
+        }
+
+        h1.hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 10vw, 160px);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: #fff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            color: #fff;
+            margin-top: 0;
+            font-size: 18px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* --- 6. ABOUT SECTION (Shop Image) -> Renamed to Statement Section context in tasks --- */
+        /* Keeping class name consistent with previous CSS if desired, but updating style for new layout */
+        /* --- 6. ABOUT SECTION (Wabi) - 1st Content Section --- */
+        .wabi-section {
+            background-color: var(--bg-1);
+        }
+
+        .wabi-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .wabi-img-container {
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .wabi-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.1) contrast(0.95);
+        }
+
+        .wabi-text-wrapper {
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        /* --- 7. STATEMENT SECTION (Philosophy) --- */
+        /* --- 7. STATEMENT SECTION (Philosophy) - 4th Content Section --- */
+        .statement-section {
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-4);
+            text-align: center;
+            min-height: 60vh;
+            gap: 30px;
+        }
+
+        .small-caps {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            /* No bold */
+            color: var(--accent-coral);
+            margin-bottom: 0;
+            font-style: italic;
+            /* Matching general Playfair usage */
+            text-transform: none;
+            /* Reset uppercase if previously set */
+            letter-spacing: 0;
+            /* Reset spacing */
+        }
+
+        .big-statement {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 4vw, 48px);
+            max-width: 800px;
+            line-height: 1.4;
+            color: var(--text-charcoal);
+            font-style: italic;
+        }
+
+        /* --- 8. PRODUCT SECTION --- */
+        .product-section {
+            background-color: var(--bg-cream);
+            display: flex;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .product-img-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .product-img {
+            width: 75%;
+            max-width: 600px;
+            min-width: 300px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.1));
+        }
+
+        .product-info {
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .product-desc {
+            font-size: 18px;
+            max-width: 450px;
+            margin-bottom: 0;
+        }
+
+        .btn-order {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--text-charcoal);
+            color: var(--text-charcoal);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-order:hover {
+            background-color: var(--text-charcoal);
+            color: #fff;
+        }
+
+        /* --- 9. FOOTER --- */
+        footer {
+            min-height: auto;
+            /* Allow content to define height, keeping it compact */
+            display: flex;
+            width: 100%;
+        }
+
+        .footer-col {
+            flex: 1;
+            padding: clamp(30px, 5vh, 60px) 40px;
+            /* Responsive vertical padding based on viewport height */
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s ease;
+        }
+
+        .footer-col:nth-child(1) {
+            background: var(--footer-1);
+        }
+
+        .footer-col:nth-child(2) {
+            background: var(--footer-2);
+        }
+
+        .footer-col:nth-child(3) {
+            background: var(--footer-3);
+        }
+
+        .footer-col:hover {
+            flex: 1.5;
+            background: var(--text-charcoal);
+        }
+
+        .footer-col:hover h4,
+        .footer-col:hover p {
+            color: #fff;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .footer-col p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            section {
+                padding: var(--vertical-padding) var(--side-padding);
+                min-height: auto;
+            }
+
+            .hero-section {
+                min-height: 100vh;
+                /* Ensure full screen cover on mobile */
+            }
+
+            header {
+                padding: calc(var(--vertical-padding) * 0.4) var(--side-padding);
+            }
+
+
+
+            .wabi-content,
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .wabi-img-container {
+                height: 50vh;
+                order: -1;
+            }
+
+            .wabi-text-wrapper,
+            .product-info {
+                padding-right: 0;
+                text-align: center;
+                align-items: center;
+            }
+
+            .product-desc,
+            .big-statement {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .product-img-wrapper {
+                order: -1;
+            }
+
+            .product-img {
+                width: 80%;
+                /* Slightly larger on mobile for better visibility */
+            }
+
+            footer {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            h1.hero-title {
+                font-size: 14vw;
+            }
+        }
+
+
+
+        /* Essential style for split-type optimization */
+        .line {
+            padding-top: 0.5em;
+            /* Give breathing room for ascenders */
+            margin-top: -0.5em;
+            /* Compensate layout */
+            clip-path: polygon(-20% 0%, 120% 0%, 120% 100%, -20% 100%);
+            /* Creates the 'reveal from invisible' effect while allowing italics to overflow */
+        }
+
+        /* --- THE ALCHEMY SECTION --- */
+        /* --- THE ALCHEMY SECTION - 3rd Content Section --- */
+        .alchemy-section {
+            background-color: var(--bg-3);
+            padding: var(--vertical-padding) var(--side-padding);
+            padding-bottom: clamp(60px, 10vw, 160px);
+            /* Extra breathing room at bottom */
+            display: flex;
+            flex-direction: column;
+            gap: clamp(20px, 4vw, 40px);
+            /* Scalable gap between header and grid */
+        }
+
+        .alchemy-header {
+            text-align: center;
+            margin-bottom: clamp(20px, 4vw, 40px);
+            /* Scalable margin */
+        }
+
+        .alchemy-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(32px, 5vw, 56px);
+            color: var(--text-charcoal);
+            margin-bottom: 10px;
+        }
+
+        .alchemy-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .alchemy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(20px, 4vw, 40px);
+            /* Reduced column gap */
+            row-gap: clamp(30px, 5vw, 50px);
+            /* Reduced row gap to < 60px */
+        }
+
+        @media (max-width: 768px) {
+            .alchemy-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .alchemy-card {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(15px, 2vw, 24px);
+            /* Scalable internal spacing */
+            /* Removed border & padding as requested */
+        }
+
+        .alchemy-card-header {
+            display: flex;
+            align-items: baseline;
+            gap: clamp(10px, 1.5vw, 16px);
+        }
+
+        .alchemy-step-num {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 24px;
+            color: var(--accent-coral);
+            opacity: 0.8;
+        }
+
+        .alchemy-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--text-charcoal);
+            line-height: 1.2;
+        }
+
+        .alchemy-card-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            /* Removed border-top, padding-top, margin-top */
+        }
+
+        .alchemy-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 0;
+            filter: grayscale(0.3) sepia(0.05) contrast(0.95);
+            /* Gray 30% initially */
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .alchemy-card:hover .alchemy-img {
+            transform: scale(1.02);
+            filter: grayscale(0) sepia(0) contrast(1.05) brightness(1.02);
+            /* Fresh color on hover */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-cream);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Fade text out faster than bg */
+        .loader-hidden .loader-logo {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 32px;
+            color: var(--text-charcoal);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* --- LENIS SMOOTH SCROLL --- */
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
